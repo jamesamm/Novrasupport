@@ -711,25 +711,99 @@
       display: flex;
       flex-direction: row;
       justify-content: center;
-      align-items: center;
-      gap: 16px;
+      align-items: flex-end;
+      gap: 8px;
       min-width: 320px;
+      padding-top: 20px;
     }
 
-    .phone-primary {
-      width: 240px;
+    .phone-col {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0;
+    }
+
+    .phone-col:first-child {
+      transform: translateY(30px);
+    }
+
+    .phone-col:last-child {
+      transform: translateY(-20px);
+    }
+
+    .phone-label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--cream);
+      border-radius: 16px 16px 0 0;
+      padding: 14px 16px 18px;
+      margin-bottom: -6px;
       position: relative;
-      z-index: 2;
-      transform: translateY(30px) rotate(-3deg);
-      filter: drop-shadow(0 32px 48px rgba(0,0,0,0.14));
+      z-index: 1;
+      width: 100%;
     }
 
+    .phone-label-icon {
+      width: 36px;
+      height: 36px;
+      background: var(--orange);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      flex-shrink: 0;
+    }
+
+    .phone-label-icon::before {
+      content: '';
+      width: 7px;
+      height: 16px;
+      background: white;
+      border-radius: 5px;
+      position: absolute;
+      left: 7px;
+    }
+
+    .phone-label-icon::after {
+      content: '';
+      width: 7px;
+      height: 7px;
+      background: white;
+      border-radius: 50%;
+      position: absolute;
+      right: 7px;
+      bottom: 8px;
+    }
+
+    .phone-label-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+    }
+
+    .phone-label-main {
+      font-family: 'Sora', sans-serif;
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--dark);
+      letter-spacing: -0.5px;
+    }
+
+    .phone-label-sub {
+      font-family: 'Sora', sans-serif;
+      font-size: 18px;
+      font-weight: 600;
+      color: #999;
+      letter-spacing: -0.5px;
+    }
+
+    .phone-primary,
     .phone-secondary {
-      width: 240px;
-      position: relative;
-      z-index: 2;
-      transform: translateY(-30px) rotate(3deg);
-      filter: drop-shadow(0 32px 48px rgba(0,0,0,0.14));
+      width: 300px;
+      filter: drop-shadow(0 24px 40px rgba(0,0,0,0.13));
     }
 
     /* SUPPORT SEARCH BAR below hero */
@@ -802,8 +876,12 @@
       </div>
     </div>
     <div class="hero-split-right">
-      <img src="phone1.png" class="phone-primary" alt="Novra workout screen" />
-      <img src="phone2.png" class="phone-secondary" alt="Novra nutrition screen" />
+      <div class="phone-col">
+        <img src="phone1.png" class="phone-primary" alt="Novra workout screen" />
+      </div>
+      <div class="phone-col">
+        <img src="phone2.png" class="phone-secondary" alt="Novra nutrition screen" />
+      </div>
     </div>
   </div>
 
