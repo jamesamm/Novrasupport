@@ -9,7 +9,7 @@
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Novra — Support</title>  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet"/>
+  <title>Novra</title>  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet"/>
   <style>
     :root {
       --orange: #E8521A;
@@ -844,6 +844,8 @@
         <div class="c-item" id="ci2"><img src="slide3.png" alt="AI body analysis" /></div>
         <div class="c-item" id="ci3"><img src="slide4.png" alt="Personalized workouts" /></div>
         <div class="c-item" id="ci4"><img src="slide5.png" alt="Custom meal plans" /></div>
+        <div class="c-item" id="ci5"><img src="slide6.png" alt="Select your goal" /></div>
+        <div class="c-item" id="ci6"><img src="slide7.png" alt="Build your schedule" /></div>
       </div>
       <div class="carousel-dots" id="carouselDots">
         <div class="carousel-dot" onclick="carouselGoto(0)"></div>
@@ -851,6 +853,8 @@
         <div class="carousel-dot" onclick="carouselGoto(2)"></div>
         <div class="carousel-dot" onclick="carouselGoto(3)"></div>
         <div class="carousel-dot" onclick="carouselGoto(4)"></div>
+        <div class="carousel-dot" onclick="carouselGoto(5)"></div>
+        <div class="carousel-dot" onclick="carouselGoto(6)"></div>
       </div>
     </div>
   </div>
@@ -1017,95 +1021,6 @@
     </div>
   </section>
 
-  <!-- LEGAL -->
-  <section id="legal">
-    <div class="section-label">Legal</div>
-    <h2 class="section-title">Privacy & Terms</h2>
-    <p class="section-sub">Our policies on how we collect, use, and protect your data.</p>
-
-    <div class="legal-tabs">
-      <button class="tab-btn active" onclick="switchTab('privacy', this)">Privacy Policy</button>
-      <button class="tab-btn" onclick="switchTab('terms', this)">Terms of Use</button>
-    </div>
-
-    <div class="legal-panel active" id="privacy">
-      <h3>Privacy Policy</h3>
-      <p class="legal-date">Last updated: March 8, 2026</p>
-
-      <p>Novra ("we", "us", or "our") is committed to protecting your personal information. This Privacy Policy explains how we collect, use, and safeguard your data when you use the Novra app.</p>
-
-      <h4>1. Information We Collect</h4>
-      <p>We collect information you provide directly, including:</p>
-      <ul>
-        <li>Account information (name, email address)</li>
-        <li>Health and fitness data (workouts, nutrition logs, body metrics)</li>
-        <li>Photos submitted for AI body analysis</li>
-        <li>Device information and usage analytics</li>
-      </ul>
-
-      <h4>2. How We Use Your Information</h4>
-      <p>We use your data to:</p>
-      <ul>
-        <li>Provide and personalize the Novra experience</li>
-        <li>Generate AI-powered workout and meal plans</li>
-        <li>Analyze your progress and deliver insights</li>
-        <li>Improve our features and app performance</li>
-        <li>Communicate with you about your account and updates</li>
-      </ul>
-
-      <h4>3. Data Sharing</h4>
-      <p>We do not sell your personal data. We may share data with trusted third-party service providers (e.g., analytics, cloud infrastructure) solely to operate the app. These partners are bound by confidentiality obligations and may not use your data for their own purposes.</p>
-
-      <h4>4. Health Data</h4>
-      <p>Health and body-related data is treated with the utmost care. Photos submitted for AI analysis are processed securely and are not used for any purpose other than providing your analysis. You can delete your data at any time from within the app.</p>
-
-      <h4>5. Data Retention</h4>
-      <p>We retain your data for as long as your account is active, or as needed to provide services. You may request deletion at any time by emailing <a href="mailto:support@novra.fit" style="color:var(--orange)">support@novra.fit</a>.</p>
-
-      <h4>6. Your Rights</h4>
-      <p>Depending on your location, you may have rights to access, correct, or delete your personal data. Contact us at <a href="mailto:support@novra.fit" style="color:var(--orange)">support@novra.fit</a> to exercise these rights.</p>
-
-      <h4>7. Contact Us</h4>
-      <p>For privacy-related questions, contact us at <a href="mailto:support@novra.fit" style="color:var(--orange)">support@novra.fit</a>.</p>
-    </div>
-
-    <div class="legal-panel" id="terms">
-      <h3>Terms of Use</h3>
-      <p class="legal-date">Last updated: March 8, 2026</p>
-
-      <p>By downloading or using the Novra app, you agree to these Terms of Use. Please read them carefully.</p>
-
-      <h4>1. Use of the App</h4>
-      <p>Novra is intended for personal, non-commercial use. You must be at least 13 years old to use the app. You agree not to misuse the app, including attempting to reverse-engineer or exploit any features.</p>
-
-      <h4>2. Subscriptions & Billing</h4>
-      <ul>
-        <li>Novra offers both free and paid subscription tiers</li>
-        <li>Subscriptions are billed through the App Store or Google Play</li>
-        <li>Subscriptions automatically renew unless cancelled at least 24 hours before the renewal date</li>
-        <li>Refunds are subject to the respective app store's refund policies</li>
-      </ul>
-
-      <h4>3. Health Disclaimer</h4>
-      <p>Novra provides fitness and nutrition information for general wellness purposes only. It is not a substitute for professional medical advice, diagnosis, or treatment. Always consult a qualified healthcare provider before starting any new fitness or diet program.</p>
-
-      <h4>4. User Content</h4>
-      <p>You retain ownership of content you create in the app. By submitting photos or other content, you grant Novra a limited license to process that content solely to provide the service to you.</p>
-
-      <h4>5. Intellectual Property</h4>
-      <p>All content, branding, and technology in the Novra app is owned by Novra and protected by intellectual property laws. You may not reproduce or distribute any part of the app without written permission.</p>
-
-      <h4>6. Limitation of Liability</h4>
-      <p>To the maximum extent permitted by law, Novra is not liable for any indirect, incidental, or consequential damages arising from your use of the app.</p>
-
-      <h4>7. Changes to Terms</h4>
-      <p>We may update these terms from time to time. Continued use of the app after changes constitutes acceptance of the updated terms.</p>
-
-      <h4>8. Contact</h4>
-      <p>For any questions about these terms, contact us at <a href="mailto:support@novra.fit" style="color:var(--orange)">support@novra.fit</a>.</p>
-    </div>
-  </section>
-
   <!-- FOOTER -->
   <footer>
     <a href="#" class="foot-logo">
@@ -1116,14 +1031,14 @@
     <div class="foot-links">
       <a href="#faq">FAQ</a>
       <a href="#contact">Contact</a>
-      <a href="#legal">Privacy</a>
-      <a href="#legal">Terms</a>
+      <a href="/privacy.html">Privacy</a>
+      <a href="/terms.html">Terms</a>
     </div>
   </footer>
 
   <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
     // Carousel
-    const TOTAL = 5;
+    const TOTAL = 7;
     const TRANS = 'transform 0.72s cubic-bezier(0.4,0,0.2,1), opacity 0.72s ease, filter 0.72s ease';
     const POS = {
       center:  { x:   0, s: 1.15, o: 1,    b: 0,   z: 3 },
@@ -1143,13 +1058,15 @@
     }
 
     // order: [leftIdx, centerIdx, rightIdx, hiddenIdx]
-    let cOrder = [0, 1, 2, 3, 4];
+    let cOrder = [0, 1, 5, 6, 2, 3, 4];
     const cItems = [
       document.getElementById('ci0'),
       document.getElementById('ci1'),
       document.getElementById('ci2'),
       document.getElementById('ci3'),
       document.getElementById('ci4'),
+      document.getElementById('ci5'),
+      document.getElementById('ci6'),
     ];
     const cDots = document.querySelectorAll('.carousel-dot');
 

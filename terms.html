@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/png" href="favicon.png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Terms of Use — Novra</title>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --orange: #E8521A;
+      --cream: #FAF8F5;
+      --dark: #1A1A1A;
+      --mid: #4A4A4A;
+      --light: #8A8A8A;
+      --border: #EBEBEB;
+      --white: #FFFFFF;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--dark); line-height: 1.6; }
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(250,248,245,0.92); backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 40px; display: flex; align-items: center;
+      justify-content: space-between; height: 64px;
+    }
+    .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .logo-mark {
+      width: 36px; height: 36px; background: var(--orange);
+      border-radius: 10px; display: flex; align-items: center;
+      justify-content: center; position: relative;
+    }
+    .logo-mark::before {
+      content: ''; width: 8px; height: 16px; background: white;
+      border-radius: 6px; position: absolute; left: 8px;
+    }
+    .logo-mark::after {
+      content: ''; width: 8px; height: 8px; background: white;
+      border-radius: 50%; position: absolute; right: 8px; top: 14px;
+    }
+    .logo-text { font-family: 'Sora', sans-serif; font-weight: 700; font-size: 20px; color: var(--dark); }
+    .back-link {
+      font-size: 14px; color: var(--light); text-decoration: none;
+      display: flex; align-items: center; gap: 6px; transition: color 0.2s;
+    }
+    .back-link:hover { color: var(--orange); }
+    .content {
+      max-width: 760px; margin: 60px auto; padding: 0 40px 80px;
+    }
+    .content h3 {
+      font-family: 'Sora', sans-serif; font-size: 28px; font-weight: 800;
+      color: var(--dark); margin-bottom: 6px; letter-spacing: -0.5px;
+    }
+    .legal-date { font-size: 13px; color: var(--light); margin-bottom: 32px; }
+    .content h4 {
+      font-family: 'Sora', sans-serif; font-size: 16px; font-weight: 700;
+      color: var(--dark); margin: 28px 0 8px;
+    }
+    .content p, .content li {
+      font-size: 15px; color: var(--mid); line-height: 1.8;
+    }
+    .content ul { padding-left: 20px; margin: 8px 0; }
+    .content li { margin-bottom: 6px; }
+    a[style] { color: var(--orange) !important; }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="/" class="nav-logo">
+      <div class="logo-mark"></div>
+      <span class="logo-text">novra</span>
+    </a>
+    <a href="/" class="back-link">← Back to Support</a>
+  </nav>
+  <div class="content">
+    <h3>Terms of Use</h3>
+      <p class="legal-date">Last updated: March 8, 2026</p>
+
+      <p>By downloading or using the Novra app, you agree to these Terms of Use. Please read them carefully.</p>
+
+      <h4>1. Use of the App</h4>
+      <p>Novra is intended for personal, non-commercial use. You must be at least 13 years old to use the app. You agree not to misuse the app, including attempting to reverse-engineer or exploit any features.</p>
+
+      <h4>2. Subscriptions & Billing</h4>
+      <ul>
+        <li>Novra offers both free and paid subscription tiers</li>
+        <li>Subscriptions are billed through the App Store or Google Play</li>
+        <li>Subscriptions automatically renew unless cancelled at least 24 hours before the renewal date</li>
+        <li>Refunds are subject to the respective app store's refund policies</li>
+      </ul>
+
+      <h4>3. Health Disclaimer</h4>
+      <p>Novra provides fitness and nutrition information for general wellness purposes only. It is not a substitute for professional medical advice, diagnosis, or treatment. Always consult a qualified healthcare provider before starting any new fitness or diet program.</p>
+
+      <h4>4. User Content</h4>
+      <p>You retain ownership of content you create in the app. By submitting photos or other content, you grant Novra a limited license to process that content solely to provide the service to you.</p>
+
+      <h4>5. Intellectual Property</h4>
+      <p>All content, branding, and technology in the Novra app is owned by Novra and protected by intellectual property laws. You may not reproduce or distribute any part of the app without written permission.</p>
+
+      <h4>6. Limitation of Liability</h4>
+      <p>To the maximum extent permitted by law, Novra is not liable for any indirect, incidental, or consequential damages arising from your use of the app.</p>
+
+      <h4>7. Changes to Terms</h4>
+      <p>We may update these terms from time to time. Continued use of the app after changes constitutes acceptance of the updated terms.</p>
+
+      <h4>8. Contact</h4>
+      <p>For any questions about these terms, contact us at <a href="mailto:support@novra.fit" style="color:var(--orange)">support@novra.fit</a>.</p>
+  </div>
+</body>
+</html>
