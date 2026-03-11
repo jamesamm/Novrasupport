@@ -20,6 +20,7 @@ body {
   color: var(--dark);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
 }
 
 /* ─── NAV ─────────────────────────────────────────── */
@@ -250,8 +251,14 @@ nav {
 
 .store-badge-link:hover { opacity: 0.82; transform: translateY(-2px); }
 
-.store-badge {
-  height: 52px;
+.store-badge-apple {
+  height: 44px;
+  width: auto;
+  display: block;
+}
+
+.store-badge-google {
+  height: 63px;
   width: auto;
   display: block;
 }
@@ -270,6 +277,7 @@ nav {
   width: 420px;
   height: 580px;
   touch-action: pan-y;
+  overflow: hidden;
 }
 
 .c-item {
@@ -735,7 +743,7 @@ footer p {
   .hero-split-left { width: 100%; }
   .hero-split p { margin: 0 auto 30px; }
   .store-buttons { justify-content: center; }
-  .hero-split-right { width: 100%; }
+  .hero-split-right { width: 100%; overflow: hidden; }
 
   .carousel-stage { width: 320px; height: 460px; }
   .c-item { width: 170px; margin-left: -85px; }
@@ -752,6 +760,7 @@ footer p {
   .hero-split {
     padding: 36px 20px 32px;
     gap: 32px;
+    overflow: hidden;
   }
 
   .hero-split h1 {
@@ -772,7 +781,8 @@ footer p {
 
   .store-buttons { gap: 10px; }
 
-  .store-badge { height: 46px; }
+  .store-badge-apple { height: 38px; }
+  .store-badge-google { height: 56px; }
 
   /* Mobile carousel: single centered image */
   .carousel-stage {
@@ -816,5 +826,6 @@ footer p {
 /* ─── TINY PHONES: ≤ 390px ─────────────────────────── */
 @media (max-width: 390px) {
   .hero-split h1 { font-size: clamp(26px, 8vw, 36px); }
-  .store-badge { height: 42px; }
+  .store-badge-apple { height: 34px; }
+  .store-badge-google { height: 42px; }
 }
