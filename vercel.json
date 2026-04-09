@@ -1,10 +1,8 @@
-{                                                                                   
+ {
     "redirects": [
-      {                                                                               
+      {
         "source": "/@:username",
-        "destination": "https://gkvmqswhwukfigfjbqup.supabase.co/functions/v1/profile-
-  og?username=:username",                     
-        "permanent": false                
-      }                                                                               
-    ]                                                                                 
-  }      
+        "destination": "https://gkvmqswhwukfigfjbqup.supabase.co/functions/v1/profile-og?username=:username"
+      }
+    ]
+  }   
