@@ -1,20 +1,9 @@
 {                                                                                                                      
     "rewrites": [                                                                                                        
-      {                                                                                                                  
+      {
         "source": "/@:username",                                                                                         
         "destination": "https://gkvmqswhwukfigfjbqup.supabase.co/functions/v1/profile-og?username=:username"
       }                                       
-    ],                                    
-    "headers": [                                                                                                         
-      {                                                                                                                  
-        "source": "/@:username",                                                                                         
-        "headers": [                                                                                                     
-          {       
-            "key": "Content-Type",
-            "value": "text/html; charset=utf-8"
-          }                                   
-        ]                                 
-      }
-    ]                                                                                                                    
+    ]                                     
   }
  
