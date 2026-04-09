@@ -1,8 +1,8 @@
-{                                                                             
-    "rewrites": [ 
-      {
-        "source": "/@:username",
-        "destination": "https://gkvmqswhwukfigfjbqup.supabase.co/functions/v1/profile-og?username=:username"            
-      }
-    ]                                                                           
-  }
+{                                                                                                                               
+    "rewrites": [                                                                                                                 
+      {                                                                                                                           
+        "source": "/@:username",                                                                                                  
+        "destination": "https://gkvmqswhwukfigfjbqup.supabase.co/functions/v1/profile-og?username=:username"                      
+      }                                                                                                                           
+    ]                                     
+  }   
