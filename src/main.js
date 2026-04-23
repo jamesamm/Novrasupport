@@ -1,186 +1,297 @@
 import './style.css'
+import * as THREE from 'three'
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
 
-// ─── CAROUSEL ─────────────────────────────────────────────────────────────────
-const TOTAL = 7
-const TRANS = 'transform 0.72s cubic-bezier(0.4,0,0.2,1), opacity 0.72s ease, filter 0.72s ease'
+/* ── SCROLL REVEAL ── */
+const revealObserver = new IntersectionObserver(
+  (entries) => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible') }),
+  { threshold: 0.1 }
+)
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el))
 
-function getPOS() {
-  const mobile = window.innerWidth <= 640
-  return {
-    center:  { x:   0,                 s: 1.15,              o: 1,              b: 0,              z: 3 },
-    left:    { x: mobile ? -260 : -180, s: mobile ? 0.75 : 0.82, o: mobile ? 0 : 0.45, b: mobile ? 0 : 1.5, z: 2 },
-    right:   { x: mobile ?  260 :  180, s: mobile ? 0.75 : 0.82, o: mobile ? 0 : 0.45, b: mobile ? 0 : 1.5, z: 2 },
-    hidden:  { x: mobile ?  360 :  420, s: 0.65,             o: 0,              b: 0,              z: 1 },
-    farLeft: { x: mobile ? -360 : -420, s: 0.65,             o: 0,              b: 0,              z: 1 },
-    farRight:{ x: mobile ?  360 :  420, s: 0.65,             o: 0,              b: 0,              z: 1 },
-  }
-}
-
-const cItems = Array.from({ length: TOTAL }, (_, i) => document.getElementById(`ci${i}`))
-const cDots  = document.querySelectorAll('.carousel-dot')
-let cOrder   = [0, 1, 5, 6, 2, 3, 4]
-
-function styleItem(el, pos, animate) {
-  const p = getPOS()[pos]
-  el.style.transition = animate ? TRANS : 'none'
-  el.style.transform  = `translateX(${p.x}px) scale(${p.s})`
-  el.style.opacity    = p.o
-  el.style.filter     = `blur(${p.b}px)`
-  el.style.zIndex     = p.z
-}
-
-function syncDots() {
-  cDots.forEach((d, i) => d.classList.toggle('active', i === cOrder[1]))
-}
-
-function initCarousel() {
-  styleItem(cItems[cOrder[0]], 'left',   false)
-  styleItem(cItems[cOrder[1]], 'center', false)
-  styleItem(cItems[cOrder[2]], 'right',  false)
-  for (let i = 3; i < TOTAL; i++) styleItem(cItems[cOrder[i]], 'hidden', false)
-  syncDots()
-}
-
-function carouselNext() {
-  const outLeft = cOrder[0]
-  styleItem(cItems[outLeft], 'farLeft', false)
-  requestAnimationFrame(() => requestAnimationFrame(() => {
-    cOrder = [...cOrder.slice(1), cOrder[0]]
-    styleItem(cItems[cOrder[0]], 'left',   true)
-    styleItem(cItems[cOrder[1]], 'center', true)
-    styleItem(cItems[cOrder[2]], 'right',  true)
-    for (let i = 3; i < TOTAL; i++) styleItem(cItems[cOrder[i]], 'hidden', false)
-    syncDots()
-  }))
-}
-
-function carouselPrev() {
-  const incoming = cOrder[TOTAL - 1]
-  styleItem(cItems[incoming], 'farLeft', false)
-  cOrder = [cOrder[TOTAL - 1], ...cOrder.slice(0, TOTAL - 1)]
-  requestAnimationFrame(() => requestAnimationFrame(() => {
-    styleItem(cItems[cOrder[0]], 'left',   true)
-    styleItem(cItems[cOrder[1]], 'center', true)
-    styleItem(cItems[cOrder[2]], 'right',  true)
-    styleItem(cItems[cOrder[3]], 'hidden', true)
-    for (let i = 4; i < TOTAL; i++) styleItem(cItems[cOrder[i]], 'hidden', false)
-    syncDots()
-  }))
-}
-
-window.carouselGoto = function(targetIdx) {
-  let steps = 0
-  while (cOrder[1] !== targetIdx && steps < TOTAL) {
-    carouselNext()
-    steps++
-  }
-  resetAuto()
-}
-
-// Auto-advance
-let autoTimer = setInterval(carouselNext, 3000)
-function resetAuto() {
-  clearInterval(autoTimer)
-  autoTimer = setInterval(carouselNext, 3000)
-}
-
-// Touch / swipe
-const stage = document.getElementById('carouselStage')
-let touchStartX = 0
-let touchStartY = 0
-
-stage.addEventListener('touchstart', e => {
-  touchStartX = e.touches[0].clientX
-  touchStartY = e.touches[0].clientY
+/* ── NAV SCROLL ── */
+const nav = document.getElementById('nav')
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 20)
 }, { passive: true })
 
-stage.addEventListener('touchend', e => {
-  const dx = e.changedTouches[0].clientX - touchStartX
-  const dy = e.changedTouches[0].clientY - touchStartY
-  if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 40) {
-    dx < 0 ? carouselNext() : carouselPrev()
-    resetAuto()
-  }
-}, { passive: true })
-
-// Re-init positions on resize (e.g. orientation change)
-window.addEventListener('resize', () => initCarousel(), { passive: true })
-
-initCarousel()
-
-// ─── MOBILE NAV ───────────────────────────────────────────────────────────────
-const hamburger  = document.getElementById('navHamburger')
-const mobileMenu = document.getElementById('mobileMenu')
-
-hamburger.addEventListener('click', () => {
-  const isOpen = mobileMenu.classList.toggle('open')
-  hamburger.classList.toggle('open', isOpen)
-  document.body.style.overflow = isOpen ? 'hidden' : ''
+/* ── HAMBURGER ── */
+const hamburger = document.getElementById('hamburger')
+const mobileMenu = document.getElementById('mobile-menu')
+hamburger?.addEventListener('click', () => {
+  hamburger.classList.toggle('open')
+  mobileMenu.classList.toggle('open')
+})
+mobileMenu?.querySelectorAll('.mobile-link').forEach(link => {
+  link.addEventListener('click', () => {
+    hamburger.classList.remove('open')
+    mobileMenu.classList.remove('open')
+  })
 })
 
-window.closeMobileNav = function() {
-  mobileMenu.classList.remove('open')
-  hamburger.classList.remove('open')
-  document.body.style.overflow = ''
-}
-
-// Close mobile nav on any link click
-mobileMenu.querySelectorAll('a').forEach(a => {
-  a.addEventListener('click', () => window.closeMobileNav())
+/* ── FAQ ── */
+document.querySelectorAll('.faq-question').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const item = btn.closest('.faq-item')
+    const isOpen = item.classList.contains('open')
+    document.querySelectorAll('.faq-item.open').forEach(el => el.classList.remove('open'))
+    if (!isOpen) item.classList.add('open')
+  })
 })
 
-// ─── FAQ ──────────────────────────────────────────────────────────────────────
-window.toggleFaq = function(el) {
-  const item   = el.parentElement
-  const isOpen = item.classList.contains('open')
-  document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'))
-  if (!isOpen) item.classList.add('open')
-}
-
-// ─── SEARCH ───────────────────────────────────────────────────────────────────
-window.handleSearch = function() {
-  const q = document.getElementById('searchInput').value.toLowerCase().trim()
+const faqSearch = document.getElementById('faq-search')
+faqSearch?.addEventListener('input', () => {
+  const q = faqSearch.value.toLowerCase().trim()
   document.querySelectorAll('.faq-item').forEach(item => {
-    const keywords = (item.dataset.keywords || '').toLowerCase()
-    const text     = item.innerText.toLowerCase()
-    const match    = !q || keywords.includes(q) || text.includes(q)
-    item.style.display = match ? '' : 'none'
+    const text = (item.textContent + ' ' + (item.dataset.keywords || '')).toLowerCase()
+    item.classList.toggle('hidden', q.length > 0 && !text.includes(q))
   })
+})
 
-  // Auto-scroll to FAQ if user types
-  if (q) {
-    document.getElementById('faq').scrollIntoView({ behavior: 'smooth', block: 'start' })
+/* ── CONTACT FORM ── */
+const form = document.getElementById('contact-form')
+const successEl = document.getElementById('form-success')
+form?.addEventListener('submit', async (e) => {
+  e.preventDefault()
+  try {
+    const res = await fetch(form.action, {
+      method: 'POST',
+      body: new FormData(form),
+      headers: { Accept: 'application/json' }
+    })
+    if (res.ok) {
+      form.reset()
+      successEl.classList.add('visible')
+      setTimeout(() => successEl.classList.remove('visible'), 5000)
+    }
+  } catch {}
+})
+
+/* ══════════════════════════════════════
+   PHONE MODEL LOADER, reusable
+══════════════════════════════════════ */
+const loader = new GLTFLoader()
+
+function loadPhone(canvasId, stageId, modelPath, rotationY = -0.12, videoSrc = null, exposure = 1.5, options = {}) {
+  const canvas = document.getElementById(canvasId)
+  const stage  = document.getElementById(stageId)
+  if (!canvas || !stage) return
+  const { draggable = false, scaleMultiplier = 1 } = options
+
+  const W = stage.clientWidth  || 280
+  const H = stage.clientHeight || 560
+
+  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true })
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
+  renderer.setSize(W, H)
+  renderer.outputColorSpace = THREE.SRGBColorSpace
+  renderer.toneMapping = THREE.ACESFilmicToneMapping
+  renderer.toneMappingExposure = exposure
+
+  const scene  = new THREE.Scene()
+  const camera = new THREE.PerspectiveCamera(36, W / H, 0.01, 100)
+  camera.position.set(0, 0, 5.5)
+
+  scene.add(new THREE.AmbientLight(0xffffff, 0.7))
+  const key = new THREE.DirectionalLight(0xffffff, 4)
+  key.position.set(3, 5, 6)
+  scene.add(key)
+  const fill = new THREE.DirectionalLight(0xccddff, 1.5)
+  fill.position.set(-4, -1, 4)
+  scene.add(fill)
+  const rim = new THREE.DirectionalLight(0xffffff, 2.5)
+  rim.position.set(-1, 6, -5)
+  scene.add(rim)
+  const accent = new THREE.PointLight(0xFF5A1A, 2, 10)
+  accent.position.set(0, -5, 1)
+  scene.add(accent)
+
+  /* ── Video texture setup (created before model loads so it's ready) ── */
+  let videoTexture = null
+  let videoEl = null
+  if (videoSrc) {
+    videoEl = document.createElement('video')
+    videoEl.src = videoSrc
+    videoEl.loop = true
+    videoEl.muted = true
+    videoEl.playsInline = true
+    videoEl.autoplay = true
+    videoEl.preload = 'auto'
+
+    videoTexture = new THREE.VideoTexture(videoEl)
+    videoTexture.colorSpace = THREE.SRGBColorSpace
+    videoTexture.minFilter = THREE.LinearFilter
+    videoTexture.magFilter = THREE.LinearFilter
+    videoTexture.generateMipmaps = false
+    /* GLTF UVs are already flipped by the loader, don't double-flip */
+    videoTexture.flipY = false
   }
-}
 
-// ─── CONTACT FORM ─────────────────────────────────────────────────────────────
-window.handleSubmit = function(event) {
-  event.preventDefault()
-  const form   = event.target
-  const btn    = form.querySelector('.btn-submit')
-  const data   = new FormData(form)
+  loader.load(modelPath, (gltf) => {
+    const model = gltf.scene
+    const box    = new THREE.Box3().setFromObject(model)
+    const center = box.getCenter(new THREE.Vector3())
+    const size   = box.getSize(new THREE.Vector3())
 
-  btn.disabled    = true
-  btn.textContent = 'Sending…'
+    const frustumH = 2 * Math.tan(THREE.MathUtils.degToRad(18)) * 5.5
+    const scale    = ((frustumH * 0.72) / size.y) * scaleMultiplier
+    model.scale.setScalar(scale)
+    model.position.sub(center.multiplyScalar(scale))
+    model.rotation.y = rotationY
 
-  fetch('https://formspree.io/f/mlgpgaqo', {
-    method:  'POST',
-    body:    data,
-    headers: { 'Accept': 'application/json' },
-  })
-    .then(res => {
-      if (res.ok) {
-        const msg = document.getElementById('successMsg')
-        msg.style.display = 'flex'
-        form.reset()
-        msg.scrollIntoView({ behavior: 'smooth', block: 'nearest' })
-      } else {
-        btn.textContent = 'Try again →'
-        btn.disabled    = false
+    /* ── Apply video to every emissive-white mesh (the phone screen) ── */
+    if (videoTexture) {
+      let assignedVideoToScreen = false
+      model.traverse(child => {
+        if (!child.isMesh) return
+        const mats = Array.isArray(child.material) ? child.material : [child.material]
+        mats.forEach(mat => {
+          if (!mat) return
+          const matName = (mat.name || '').toLowerCase()
+          const meshName = (child.name || '').toLowerCase()
+          const hasBrightEmissive =
+            mat.emissive &&
+            mat.emissive.r > 0.9 &&
+            mat.emissive.g > 0.9 &&
+            mat.emissive.b > 0.9
+          const nameLooksLikeScreen =
+            matName.includes('screen') ||
+            matName.includes('display') ||
+            meshName.includes('screen') ||
+            meshName.includes('display')
+
+          /* Screen detection: emissive-white OR explicit screen/display names */
+          if (hasBrightEmissive || nameLooksLikeScreen) {
+            const boostedMat = new THREE.MeshBasicMaterial({
+              map: videoTexture,
+              color: 0xffffff,
+              toneMapped: false
+            })
+            boostedMat.name = `${mat.name || 'screen'}-video-bright`
+            if (Array.isArray(child.material)) {
+              const idx = child.material.indexOf(mat)
+              if (idx >= 0) child.material[idx] = boostedMat
+            } else {
+              child.material = boostedMat
+            }
+            assignedVideoToScreen = true
+          }
+        })
+      })
+
+      /* Fallback for models without emissive-tagged screen materials */
+      if (!assignedVideoToScreen) {
+        model.traverse(child => {
+          if (!child.isMesh || !child.material) return
+          const mats = Array.isArray(child.material) ? child.material : [child.material]
+          mats.forEach(mat => {
+            if (!mat || !mat.map) return
+            const fallbackMat = new THREE.MeshBasicMaterial({
+              map: videoTexture,
+              color: 0xffffff,
+              toneMapped: false
+            })
+            fallbackMat.name = `${mat.name || 'screen'}-video-fallback`
+            if (Array.isArray(child.material)) {
+              const idx = child.material.indexOf(mat)
+              if (idx >= 0) child.material[idx] = fallbackMat
+            } else {
+              child.material = fallbackMat
+            }
+          })
+        })
       }
-    })
-    .catch(() => {
-      btn.textContent = 'Try again →'
-      btn.disabled    = false
-    })
+
+      /* Start playback, autoplay policy requires muted for immediate play */
+      videoEl.play().catch(() => {
+        /* Fallback: play on first user interaction with the page */
+        document.addEventListener('pointerdown', () => videoEl.play(), { once: true })
+      })
+    }
+
+    scene.add(model)
+
+    let dragOffsetY = 0
+    let isDragging = false
+    let dragStartX = 0
+    let dragStartOffset = 0
+    const maxDrag = 0.55
+
+    if (draggable) {
+      canvas.style.touchAction = 'none'
+      canvas.style.cursor = 'grab'
+
+      const onPointerDown = (e) => {
+        isDragging = true
+        dragStartX = e.clientX
+        dragStartOffset = dragOffsetY
+        canvas.style.cursor = 'grabbing'
+        canvas.setPointerCapture?.(e.pointerId)
+      }
+      const onPointerMove = (e) => {
+        if (!isDragging) return
+        const dx = e.clientX - dragStartX
+        const delta = (dx / stage.clientWidth) * 2.4
+        dragOffsetY = THREE.MathUtils.clamp(dragStartOffset + delta, -maxDrag, maxDrag)
+      }
+      const onPointerUp = (e) => {
+        isDragging = false
+        canvas.style.cursor = 'grab'
+        canvas.releasePointerCapture?.(e.pointerId)
+      }
+
+      canvas.addEventListener('pointerdown', onPointerDown)
+      canvas.addEventListener('pointermove', onPointerMove)
+      canvas.addEventListener('pointerup', onPointerUp)
+      canvas.addEventListener('pointercancel', onPointerUp)
+      canvas.addEventListener('pointerleave', onPointerUp)
+    }
+
+    let raf
+    const tick = () => {
+      raf = requestAnimationFrame(tick)
+      if (draggable && !isDragging) {
+        dragOffsetY += (0 - dragOffsetY) * 0.1
+      }
+      model.rotation.y = rotationY + dragOffsetY
+      renderer.render(scene, camera)
+    }
+    tick()
+
+    new IntersectionObserver(([e]) => {
+      if (e.isIntersecting) {
+        if (!raf) tick()
+        if (videoEl) videoEl.play().catch(() => {})
+      } else {
+        cancelAnimationFrame(raf); raf = null
+        if (videoEl) videoEl.pause()
+      }
+    }, { threshold: 0.05 }).observe(canvas)
+  })
+
+  window.addEventListener('resize', () => {
+    const w = stage.clientWidth
+    const h = stage.clientHeight
+    if (!w || !h) return
+    camera.aspect = w / h
+    camera.updateProjectionMatrix()
+    renderer.setSize(w, h)
+  }, { passive: true })
 }
+
+/* Section 1, hero: welcome screen, phone right */
+loadPhone('hero-canvas', 'hero-model-stage', '/models/first_screen-yourbodyrebuilt.glb', -0.12, null, 1.5, { draggable: true, scaleMultiplier: 1.14 })
+
+/* Section 2, dashboard, phone left */
+loadPhone('dashboard-canvas', 'dashboard-model-stage', '/models/maindashboardscreen.glb', 0.12, null, 1.5, { draggable: true, scaleMultiplier: 1.14 })
+
+/* Section 3, AI meal scanner, phone right */
+loadPhone('scanner-canvas', 'scanner-model-stage', '/models/aimealscannerscreen.glb', -0.12, null, 1.5, { draggable: true, scaleMultiplier: 1.14 })
+
+/* Section 4, AI meal plan, phone left, video plays on the screen */
+loadPhone('mealplan-canvas', 'mealplan-model-stage', '/models/AImealplanloadingVIDEO.glb', 0.12, '/videos/mealplan.mp4', 2.1, { scaleMultiplier: 1.14 })
+
+/* Section 5, all-in-one AI suite (GPS, nutrition preferences, physique scan) */
+loadPhone('gps-canvas', 'gps-model-stage', '/models/startGPSactivityrunningwalkinghikingbikingscreen.glb', 0)
+loadPhone('nutrition-canvas', 'nutrition-model-stage', '/models/nutritionpreferencescreen.glb', 0)
+loadPhone('physique-canvas', 'physique-model-stage', '/models/AIphysiquescanphysiquereportresultsscreen.glb', 0)

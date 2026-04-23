@@ -3,259 +3,374 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Novra — AI Fitness & Nutrition Coach</title>
-  <meta name="description" content="Personalized workouts, custom meal plans, and AI-powered calorie tracking — all in one app built for real results." />
+  <meta name="description" content="Novra, your AI fitness and nutrition coach. Personalized workouts, custom meal plans, and AI-powered calorie tracking." />
+  <meta property="og:title" content="Novra, AI Fitness and Nutrition Coach" />
+  <meta property="og:description" content="Personalized workouts, custom meal plans, and AI-powered calorie tracking." />
+  <meta property="og:image" content="/novraOG-2.png" />
+  <title>Novra, AI Fitness and Nutrition Coach</title>
   <link rel="icon" type="image/png" href="/favicon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet" />
-  <script type="module" src="/src/main.js"></script>
+  <link rel="stylesheet" href="/src/style.css" />
 </head>
 <body>
 
+  <div class="grain"></div>
+
   <!-- NAV -->
-  <nav>
-    <a href="#" class="nav-logo">
-      <div class="logo-mark"></div>
-      <span class="logo-text">novra</span>
-    </a>
-
-    <ul class="nav-links">
-      <li><a href="#faq">FAQ</a></li>
-      <li><a href="#contact">Contact</a></li>
-      <li><a href="/privacy.html">Privacy</a></li>
-      <li><a href="/terms.html">Terms</a></li>
-    </ul>
-
-    <button class="nav-hamburger" id="navHamburger" aria-label="Open menu">
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="/" class="logo">
+        <img src="/logos/main_logo_orange.png" alt="Novra" class="logo-img" />
+      </a>
+      <div class="nav-links" id="nav-links">
+        <a href="#faq" class="nav-link">FAQ</a>
+        <a href="#contact" class="nav-link">Contact</a>
+      </div>
+      <a href="https://apps.apple.com/us/app/novra-calorie-counter/id6760242259" target="_blank" rel="noopener" class="btn btn-sm btn-primary nav-download">Download</a>
+      <button class="hamburger" id="hamburger" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="mobile-menu" id="mobile-menu">
+      <a href="#faq" class="mobile-link">FAQ</a>
+      <a href="#contact" class="mobile-link">Contact</a>
+      <a href="/privacy.html" class="mobile-link">Privacy</a>
+      <a href="/terms.html" class="mobile-link">Terms</a>
+    </div>
   </nav>
 
-  <!-- MOBILE MENU -->
-  <div class="mobile-menu" id="mobileMenu">
-    <a href="#faq">FAQ</a>
-    <a href="#contact">Contact</a>
-    <a href="/privacy.html">Privacy</a>
-    <a href="/terms.html">Terms</a>
-  </div>
-
   <!-- HERO -->
-  <div class="hero-split">
-    <div class="hero-split-left">
-      <div class="hero-social-proof">🔥 Your transformation starts today</div>
-      <h1>Meet <span>Novra</span><br>Your AI fitness &amp;<br>nutrition coach</h1>
-      <p>Personalized workouts, custom meal plans, and AI-powered calorie tracking — all in one app built for real results.</p>
-      <div class="store-buttons">
-        <a href="https://apps.apple.com" class="store-badge-link">
-          <img src="/badge-apple.svg" alt="Download on the App Store" class="store-badge-apple" />
-        </a>
-        <a href="https://play.google.com" class="store-badge-link">
-          <img src="/badge-google.png" alt="Get it on Google Play" class="store-badge-google" />
-        </a>
-      </div>
+  <section class="hero">
+    <div class="hero-bg">
+      <div class="hero-glow-orb orb-1"></div>
+      <div class="hero-glow-orb orb-2"></div>
+      <div class="hero-grid"></div>
     </div>
 
-    <div class="hero-split-right">
-      <div class="carousel-stage" id="carouselStage">
-        <div class="c-item" id="ci0"><img src="/slide1.png" alt="Track your progress" /></div>
-        <div class="c-item" id="ci1"><img src="/slide2.png" alt="Novra home" /></div>
-        <div class="c-item" id="ci2"><img src="/slide3.png" alt="AI body analysis" /></div>
-        <div class="c-item" id="ci3"><img src="/slide4.png" alt="Personalized workouts" /></div>
-        <div class="c-item" id="ci4"><img src="/slide5.png" alt="Custom meal plans" /></div>
-        <div class="c-item" id="ci5"><img src="/slide6.png" alt="Select your goal" /></div>
-        <div class="c-item" id="ci6"><img src="/slide7.png" alt="Build your schedule" /></div>
+    <div class="container hero-container">
+      <div class="hero-text reveal">
+        <h1 class="hero-headline">
+          Your AI fitness<br>&amp; nutrition coach.
+        </h1>
+        <p class="hero-sub">
+          Personalized workouts, custom meal plans, and AI-powered calorie tracking, built for real results.
+        </p>
+        <div class="hero-cta">
+          <a href="https://apps.apple.com/us/app/novra-calorie-counter/id6760242259" target="_blank" rel="noopener" class="store-badge-link">
+            <img src="/badge-apple.svg" alt="Download badge" class="single-store-badge" />
+          </a>
+        </div>
       </div>
-      <div class="carousel-dots" id="carouselDots">
-        <div class="carousel-dot" onclick="carouselGoto(0)"></div>
-        <div class="carousel-dot" onclick="carouselGoto(1)"></div>
-        <div class="carousel-dot" onclick="carouselGoto(2)"></div>
-        <div class="carousel-dot" onclick="carouselGoto(3)"></div>
-        <div class="carousel-dot" onclick="carouselGoto(4)"></div>
-        <div class="carousel-dot" onclick="carouselGoto(5)"></div>
-        <div class="carousel-dot" onclick="carouselGoto(6)"></div>
-      </div>
-    </div>
-  </div>
 
-  <!-- SUPPORT SEARCH -->
-  <div class="support-search-wrap">
-    <div class="support-search-inner">
-      <h2>How can we help you?</h2>
-      <div class="hero-search">
-        <input type="text" id="searchInput" placeholder="Search for help…" oninput="handleSearch()" autocomplete="off" />
-        <button onclick="handleSearch()">Search</button>
+      <div class="hero-visual">
+        <div class="model-stage" id="hero-model-stage">
+          <canvas id="hero-canvas"></canvas>
+        </div>
+        <div class="phone-glow"></div>
       </div>
     </div>
-  </div>
+  </section>
+
+  <!-- DASHBOARD SECTION -->
+  <section id="features" class="section split-section split-section-alt">
+    <div class="container split-container">
+      <div class="split-visual">
+        <div class="model-stage" id="dashboard-model-stage">
+          <canvas id="dashboard-canvas"></canvas>
+        </div>
+        <div class="phone-glow"></div>
+      </div>
+      <div class="split-text reveal">
+        <h2 class="split-heading">See the full picture.</h2>
+        <p class="split-sub">Workouts logged, calories tracked, goals visible. Your dashboard shows exactly where you stand, every single day. No switching apps, no guesswork.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- MEAL SCANNER SECTION, phone right -->
+  <section class="section split-section">
+    <div class="container split-container">
+      <div class="split-text reveal">
+        <h2 class="split-heading">Scan your meal.<br>Know your macros.</h2>
+        <p class="split-sub">Take a photo of anything you eat and Novra breaks it down instantly, calories, protein, carbs, fat. No barcodes, no manual logging, no guesswork.</p>
+      </div>
+      <div class="split-visual">
+        <div class="model-stage" id="scanner-model-stage">
+          <canvas id="scanner-canvas"></canvas>
+        </div>
+        <div class="phone-glow"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MEAL PLAN SECTION, phone left, video model -->
+  <section class="section split-section split-section-alt">
+    <div class="container split-container">
+      <div class="split-visual">
+        <div class="model-stage" id="mealplan-model-stage">
+          <canvas id="mealplan-canvas"></canvas>
+        </div>
+        <div class="phone-glow"></div>
+      </div>
+      <div class="split-text reveal">
+        <h2 class="split-heading">Your week,<br>planned by AI.</h2>
+        <p class="split-sub">Enter your height, weight, goals, and daily calorie target. Novra generates a full 7-day meal plan built around you, breakfast, lunch, dinner, and snacks included.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- APPLE HEALTH COMPATIBILITY STRIP -->
+  <section class="integration-strip">
+    <div class="container">
+      <div class="integration-pill reveal">
+        <img src="./Health_icon_iOS_12.png" alt="Apple Health icon" class="integration-icon" />
+        <div class="integration-copy">
+          <h3>Apple Health compatible</h3>
+          <p>Sync your workouts and fitness data with Apple Health for a seamless all-in-one experience.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ALL-IN-ONE AI SECTION -->
+  <section class="section split-section ai-suite-section">
+    <div class="container">
+      <div class="ai-suite-head reveal">
+        <h2 class="split-heading">Everything personalized.<br>One AI fitness app.</h2>
+        <p class="split-sub">From GPS activity tracking and nutrition preferences to AI physique reports, Novra adapts every part of your plan to you. One app, one system, fully personalized support across training, food, and progress.</p>
+      </div>
+
+      <div class="ai-suite-grid">
+        <div class="ai-suite-card reveal">
+          <div class="model-stage trio-stage" id="gps-model-stage">
+            <canvas id="gps-canvas"></canvas>
+          </div>
+          <div class="phone-glow"></div>
+          <h3>Track every move</h3>
+          <p>Run, walk, hike, or ride with GPS tracking built in.</p>
+        </div>
+
+        <div class="ai-suite-card reveal">
+          <div class="model-stage trio-stage" id="nutrition-model-stage">
+            <canvas id="nutrition-canvas"></canvas>
+          </div>
+          <div class="phone-glow"></div>
+          <h3>Nutrition your way</h3>
+          <p>Set preferences once and get plans that match your lifestyle.</p>
+        </div>
+
+        <div class="ai-suite-card reveal">
+          <div class="model-stage trio-stage" id="physique-model-stage">
+            <canvas id="physique-canvas"></canvas>
+          </div>
+          <div class="phone-glow"></div>
+          <h3>AI insights</h3>
+          <p>See detailed AI analysis and actionable next steps.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DOWNLOAD CTA -->
+  <section id="download" class="section download-section">
+    <div class="container">
+      <div class="download-card reveal">
+        <div class="download-glow-orb"></div>
+        <h2 class="download-title">Start your<br><span class="text-gradient">transformation.</span></h2>
+        <p class="download-sub">Download Novra.</p>
+        <div class="download-btns">
+          <a href="https://apps.apple.com/us/app/novra-calorie-counter/id6760242259" target="_blank" rel="noopener" class="store-badge-link">
+            <img src="/badge-apple.svg" alt="Download badge" class="single-store-badge single-store-badge-lg" />
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- FAQ -->
-  <section id="faq">
-    <div class="section-label">Help</div>
-    <h2 class="section-title">Frequently Asked Questions</h2>
-    <p class="section-sub">Quick answers to the most common questions about Novra.</p>
+  <section id="faq" class="section faq-section">
+    <div class="container">
+      <div class="section-label reveal">Support</div>
+      <h2 class="section-title reveal">Common questions.</h2>
 
-    <div class="faq-list" id="faqList">
-
-      <div class="faq-item" data-keywords="subscription cancel billing plan free trial">
-        <div class="faq-question" onclick="toggleFaq(this)">
-          <span>How do I cancel my subscription?</span>
-          <div class="faq-icon">+</div>
-        </div>
-        <div class="faq-answer">
-          <p>You can cancel your Novra subscription at any time through your device's app store. On iPhone, go to <strong>Settings → Apple ID → Subscriptions</strong>, then tap Novra and select Cancel Subscription. Your access continues until the end of the current billing period.</p>
-        </div>
+      <div class="faq-search-wrap reveal">
+        <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        <input type="text" class="faq-search" id="faq-search" placeholder="Search..." />
       </div>
 
-      <div class="faq-item" data-keywords="workout plan personalized ai custom">
-        <div class="faq-question" onclick="toggleFaq(this)">
-          <span>How does Novra create my personalized workout plan?</span>
-          <div class="faq-icon">+</div>
-        </div>
-        <div class="faq-answer">
-          <p>When you set up your profile, Novra's AI analyzes your fitness goals, experience level, available equipment, and schedule. It builds a weekly training split designed for your body and goals — and adapts over time as you log workouts and progress.</p>
-        </div>
-      </div>
+      <div class="faq-list" id="faq-list">
 
-      <div class="faq-item" data-keywords="meal plan nutrition calorie scan food log">
-        <div class="faq-question" onclick="toggleFaq(this)">
-          <span>How do I log my meals and track nutrition?</span>
-          <div class="faq-icon">+</div>
+        <div class="faq-item" data-keywords="cancel subscription billing refund">
+          <button class="faq-question">
+            <span>How do I cancel my subscription?</span>
+            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              <p>Go to your device subscription settings, find Novra, and tap Cancel. Your access continues until the end of the billing period.</p>
+            </div>
+          </div>
         </div>
-        <div class="faq-answer">
-          <p>Tap the <strong>Nutrition</strong> tab, then the + button to add a meal. You can scan food with your camera, scan a barcode, or enter it manually. Novra's AI recognizes the food and instantly estimates calories, protein, carbs, and fat.</p>
-        </div>
-      </div>
 
-      <div class="faq-item" data-keywords="body analysis progress photo ai scan">
-        <div class="faq-question" onclick="toggleFaq(this)">
-          <span>What is the AI body analysis feature?</span>
-          <div class="faq-icon">+</div>
+        <div class="faq-item" data-keywords="workout plan personalized ai how">
+          <button class="faq-question">
+            <span>How does Novra create my workout plan?</span>
+            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              <p>During setup, Novra collects your goals, fitness level, available equipment, and weekly schedule. The AI builds a structured program from that and updates it over time as your fitness improves.</p>
+            </div>
+          </div>
         </div>
-        <div class="faq-answer">
-          <p>The AI body analysis uses your progress photos to assess your physique and track changes over time. It provides personalized recommendations on what to focus on in your training and nutrition. Photos are processed securely and never shared.</p>
-        </div>
-      </div>
 
-      <div class="faq-item" data-keywords="data delete account privacy">
-        <div class="faq-question" onclick="toggleFaq(this)">
-          <span>How do I delete my account and data?</span>
-          <div class="faq-icon">+</div>
+        <div class="faq-item" data-keywords="meal nutrition log calories food track scanner">
+          <button class="faq-question">
+            <span>How do I log meals and track nutrition?</span>
+            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              <p>You can photograph a meal for instant AI analysis, search our food database manually, or scan a barcode. All methods update your daily totals automatically.</p>
+            </div>
+          </div>
         </div>
-        <div class="faq-answer">
-          <p>Go to <strong>Profile → Settings → Account → Delete Account</strong>. This permanently deletes your account and all associated data. This action cannot be undone. If you're having trouble, contact our support team at <a href="mailto:support@novra.fit" style="color:var(--orange)">support@novra.fit</a>.</p>
-        </div>
-      </div>
 
-      <div class="faq-item" data-keywords="refund payment charge">
-        <div class="faq-question" onclick="toggleFaq(this)">
-          <span>Can I get a refund?</span>
-          <div class="faq-icon">+</div>
+        <div class="faq-item" data-keywords="body analysis photos physique ai">
+          <button class="faq-question">
+            <span>What is the AI body analysis feature?</span>
+            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              <p>Upload progress photos and get an AI-generated assessment of your physique and body composition. Photos are stored securely and are never shared or used for any other purpose.</p>
+            </div>
+          </div>
         </div>
-        <div class="faq-answer">
-          <p>Refunds are handled by Apple (App Store) or Google (Play Store), not directly by Novra. You can request a refund through <strong>Apple's Report a Problem</strong> page at reportaproblem.apple.com. Our team is also happy to help — email us at <a href="mailto:support@novra.fit" style="color:var(--orange)">support@novra.fit</a>.</p>
-        </div>
-      </div>
 
-      <div class="faq-item" data-keywords="sync device ipad apple watch">
-        <div class="faq-question" onclick="toggleFaq(this)">
-          <span>Does Novra sync across devices?</span>
-          <div class="faq-icon">+</div>
+        <div class="faq-item" data-keywords="delete account data privacy">
+          <button class="faq-question">
+            <span>How do I delete my account?</span>
+            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              <p>Go to Profile settings in the app, scroll to the bottom, and tap "Delete Account." All your data is permanently removed within 30 days. This cannot be undone.</p>
+            </div>
+          </div>
         </div>
-        <div class="faq-answer">
-          <p>Yes — your data syncs automatically across all devices signed in with the same account. Simply sign in on your new device and your workouts, nutrition logs, and progress will be available instantly.</p>
-        </div>
-      </div>
 
+        <div class="faq-item" data-keywords="refund money billing payment">
+          <button class="faq-question">
+            <span>Can I get a refund?</span>
+            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              <p>Refund requests are handled by your device billing provider. Feel free to contact us first, we are happy to help.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item" data-keywords="sync devices multiple ipad apple watch">
+          <button class="faq-question">
+            <span>Does Novra sync across devices?</span>
+            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              <p>Yes. Sign in with the same account on any device and everything syncs automatically. Novra also integrates with Apple Health.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
     </div>
   </section>
 
   <!-- CONTACT -->
-  <section id="contact">
-    <div class="section-label">Get in touch</div>
-    <h2 class="section-title">Contact Support</h2>
-    <p class="section-sub">Can't find what you're looking for? We'll get back to you within 24 hours.</p>
+  <section id="contact" class="section contact-section">
+    <div class="container">
+      <div class="section-label reveal">Get in touch</div>
+      <h2 class="section-title reveal">We're here to help.</h2>
 
-    <div class="contact-grid">
-      <div class="contact-card">
-        <div class="contact-icon">✉️</div>
-        <h3>Email Support</h3>
-        <p>support@novra.fit</p>
+      <div class="contact-grid">
+        <div class="contact-info reveal">
+          <div class="contact-card">
+            <div class="contact-icon-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+            </div>
+            <h4>Email</h4>
+            <a href="mailto:support@novra.fit" class="contact-link">support@novra.fit</a>
+            <p class="contact-note">We respond within 24 hours on business days.</p>
+          </div>
+        </div>
+
+        <div class="contact-form-wrap reveal">
+          <form class="contact-form" id="contact-form" action="https://formspree.io/f/mlgpgaqo" method="POST">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="firstName">First name</label>
+                <input type="text" id="firstName" name="firstName" placeholder="Alex" required />
+              </div>
+              <div class="form-group">
+                <label for="lastName">Last name</label>
+                <input type="text" id="lastName" name="lastName" placeholder="Johnson" required />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" placeholder="you@example.com" required />
+            </div>
+            <div class="form-group">
+              <label for="topic">Topic</label>
+              <select id="topic" name="topic" required>
+                <option value="" disabled selected>Select a topic</option>
+                <option>Subscription &amp; Billing</option>
+                <option>Workouts &amp; Plans</option>
+                <option>Nutrition &amp; Meal Plans</option>
+                <option>AI Body Analysis</option>
+                <option>Account &amp; Privacy</option>
+                <option>Bug Report</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" rows="5" placeholder="Describe your issue or question..." required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary btn-full">
+              Send message
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M22 2L11 13M22 2L15 22l-4-9-9-4 20-7z"/></svg>
+            </button>
+            <div class="form-success" id="form-success">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M20 6L9 17l-5-5"/></svg>
+              Sent, we'll reply within 24 hours.
+            </div>
+          </form>
+        </div>
       </div>
-      <a href="#contact-form" class="contact-card">
-        <div class="contact-icon">💬</div>
-        <h3>Send a Message</h3>
-        <p>Fill out the form below</p>
-        <div class="arrow">→</div>
-      </a>
-    </div>
-
-    <div class="contact-form" id="contact-form">
-      <h3>Send us a message</h3>
-      <p class="form-sub">We'll respond within 1 business day.</p>
-
-      <form action="https://formspree.io/f/mlgpgaqo" method="POST" onsubmit="handleSubmit(event)">
-        <div class="form-row">
-          <div class="form-group">
-            <label for="first_name">First Name</label>
-            <input type="text" id="first_name" name="first_name" placeholder="James" required />
-          </div>
-          <div class="form-group">
-            <label for="last_name">Last Name</label>
-            <input type="text" id="last_name" name="last_name" placeholder="Smith" required />
-          </div>
-        </div>
-        <div class="form-row">
-          <div class="form-group form-full">
-            <label for="email">Email Address</label>
-            <input type="email" id="email" name="email" placeholder="you@email.com" required />
-          </div>
-        </div>
-        <div class="form-row">
-          <div class="form-group form-full">
-            <label for="topic">Topic</label>
-            <select id="topic" name="topic">
-              <option value="">Select a topic…</option>
-              <option>Subscription &amp; Billing</option>
-              <option>Workouts &amp; Plans</option>
-              <option>Nutrition &amp; Meal Plans</option>
-              <option>AI Body Analysis</option>
-              <option>Account &amp; Privacy</option>
-              <option>Bug Report</option>
-              <option>Other</option>
-            </select>
-          </div>
-        </div>
-        <div class="form-row">
-          <div class="form-group form-full">
-            <label for="message">Message</label>
-            <textarea id="message" name="message" placeholder="Describe your issue or question in detail…"></textarea>
-          </div>
-        </div>
-        <button type="submit" class="btn-submit">Send Message →</button>
-        <div class="success-msg" id="successMsg">
-          ✅ Message sent! We'll get back to you within 24 hours.
-        </div>
-      </form>
     </div>
   </section>
 
   <!-- FOOTER -->
-  <footer>
-    <a href="#" class="foot-logo">
-      <div class="logo-mark" style="width:28px;height:28px;border-radius:8px;"></div>
-      <span>novra</span>
-    </a>
-    <p>© 2026 Novra. All rights reserved.</p>
-    <div class="foot-links">
-      <a href="#faq">FAQ</a>
-      <a href="#contact">Contact</a>
-      <a href="/privacy.html">Privacy</a>
-      <a href="/terms.html">Terms</a>
+  <footer class="footer">
+    <div class="container footer-inner">
+      <a href="/" class="logo footer-logo">
+        <img src="/logos/main_logo_orange.png" alt="Novra" class="logo-img" />
+      </a>
+      <div class="footer-links">
+        <a href="#faq">FAQ</a>
+        <a href="#contact">Contact</a>
+        <a href="/privacy.html">Privacy</a>
+        <a href="/terms.html">Terms</a>
+      </div>
+      <p class="footer-copy">&copy; 2026 Novra. All rights reserved.</p>
     </div>
   </footer>
 
+  <script type="module" src="/src/main.js"></script>
 </body>
 </html>
